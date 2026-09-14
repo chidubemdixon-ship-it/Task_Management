@@ -1,29 +1,36 @@
-const dns = require("dns");
+const dns = require('dns');
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-require("dotenv").config();
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const authRoutes = require('./routes/auth');
+require('dotenv').config();
+
 
 const app = express();
+// Enable CORS for your Vite frontend
+app.use(cors({
+  origin: "http://localhost:5173",
+  credentials: true
+}));
 
-//Middleware
+
+// Middleware
 app.use(cors());
 app.use(express.json());
 
-//connect to MongoDB
+// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB connected"))
-    .catch((err) => console.log(err));
+    .then(() => console.log('MongoDB connected'))
+    .catch(err => console.log(err));
 
 // Routes
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
     res.send('Task Management API is running...');
 });
 
-const authRoutes = require("./routes/auth");
-app.use("/api/auth", authRoutes);
+app.use('/api/auth', authRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
