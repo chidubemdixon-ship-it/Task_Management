@@ -2,11 +2,11 @@ import React from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import ProtectedRoute from "./Components/ProtectedRoute";
-import Navbar from "./components/Navbar";
+import Navbar from "./Components/Navbar";
 import Login from "./Pages/Login";
-import Register from "./pages/Register";
+import Register from "./Pages/Register";
 import Dashboard from "./Pages/Dashboard";
-import Admin from "./pages/Admin";
+import Admin from "./Pages/Admin";
 
 function App() {
   return (
